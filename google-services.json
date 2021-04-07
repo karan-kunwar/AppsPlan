@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1040621474494",
+    "project_id": "madboxes",
+    "storage_bucket": "madboxes.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1040621474494:android:8f3e5c2d5399f852b9c4ef",
+        "android_client_info": {
+          "package_name": "com.example.madboxes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1040621474494-lrl7ift3u9blgkiaop6ojkdg8a2nua5k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.madboxes",
+            "certificate_hash": "293ec69997014f31804dc7cc595d770d7981f894"
+          }
+        },
+        {
+          "client_id": "1040621474494-4i5cvs0tbk11drdg4gr702autboomcj3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmr4McTjpfSwT2XLAJACos4Sq5oKb9xVE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1040621474494-4i5cvs0tbk11drdg4gr702autboomcj3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
