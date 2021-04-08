@@ -7,35 +7,17 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:googleapis/run/v1.dart';
 import 'package:madboxes/Models/AppModel.dart';
 
+List installedApps = [];
+
 class appsChooser extends StatefulWidget {
   @override
   _appsChooserState createState() => _appsChooserState();
 }
 
 class _appsChooserState extends State<appsChooser> {
-  List installedApps = [];
   @override
   void initState() {
     super.initState();
-    _getApp();
-  }
-
-  void _getApp() async {
-    List _apps = await DeviceApps.getInstalledApplications(
-        onlyAppsWithLaunchIntent: true,
-        includeAppIcons: true,
-        includeSystemApps: false);
-    print(_apps);
-    for (var app in _apps) {
-      var item = AppModel(
-        title: app.appName,
-        package: app.packageName,
-        icon: app.icon,
-        selected: false,
-      );
-      //print(app);
-      installedApps.add(item);
-    }
   }
 
   @override
