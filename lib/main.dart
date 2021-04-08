@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:provider/provider.dart';
+
+import 'Auth/sign_in.dart';
+import 'Utils/theme.dart';
 
 void main() {
   runApp(MyApp());
