@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:madboxes/Models/AppModel.dart';
+import 'package:madboxes/Models/database.dart';
 import 'package:madboxes/Screens/apps_chooser.dart';
 import 'package:madboxes/Screens/home_screen.dart';
 
@@ -12,6 +13,8 @@ class GoogleSignInButton extends StatefulWidget {
   @override
   _GoogleSignInButtonState createState() => _GoogleSignInButtonState();
 }
+
+String UID;
 
 class _GoogleSignInButtonState extends State<GoogleSignInButton> {
   bool _isSigningIn = false;
@@ -45,11 +48,6 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
                   _isSigningIn = false;
                 });
                 if (user != null) {
-                  var curuser = <String, dynamic>{
-                    'email': user.email,
-                    'photoURL': user.photoURL,
-                    'name': user.displayName,
-                  };
                   List _apps = await DeviceApps.getInstalledApplications(
                       onlyAppsWithLaunchIntent: true,
                       includeAppIcons: true,
@@ -63,6 +61,14 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
                     );
                     installedApps.add(item);
                   }
+                  UID = user.uid;
+                  var curuser = <String, dynamic>{
+                    'email': user.email,
+                    'photoURL': user.photoURL,
+                    'name': user.displayName,
+                    'apps': installedApps
+                  };
+                  Database.addUser(curuser, UID);
                   Navigator.of(context).pushReplacement(
                     MaterialPageRoute(
                       builder: (context) => appsChooser(),
