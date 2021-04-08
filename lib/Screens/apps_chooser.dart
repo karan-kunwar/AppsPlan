@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:device_apps/device_apps.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -18,9 +19,32 @@ class appsChooser extends StatefulWidget {
 }
 
 class _appsChooserState extends State<appsChooser> {
+  void reloadInstalledApps() async{
+    // installedApps.clear();
+    List _apps = await DeviceApps.getInstalledApplications(
+        onlyAppsWithLaunchIntent: true,
+        includeAppIcons: true,
+        includeSystemApps: false);
+    for (var app in _apps) {
+      var item = AppModel(
+        title: app.appName,
+        package: app.packageName,
+        icon: app.icon,
+        selected: false,
+      );
+      installedApps.add(item);
+    }
+  }
   @override
   void initState() {
     super.initState();
+    if(installedApps==null){
+      reloadInstalledApps();
+    }else{
+      if(installedApps.length==0){
+        reloadInstalledApps();
+      }
+    }
 
   }
 
@@ -36,7 +60,7 @@ class _appsChooserState extends State<appsChooser> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context){
     //return Scaffold(appBar: AppBar(title: Text("HELLO")));
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
@@ -53,7 +77,7 @@ class _appsChooserState extends State<appsChooser> {
                       user: widget.user,
                     ),
                   ),
-                );
+                ).then((value) => reloadInstalledApps());
               }),
         ],
       ),

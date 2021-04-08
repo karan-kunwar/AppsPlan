@@ -45,7 +45,22 @@ class _HomeScreenState extends State<HomeScreen> {
     _currentForegroundApp = currentForegroundApp;
     print(_currentForegroundApp);
   }
+  Route _routeToSignInScreen() {
+    return PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) => SignInScreen(),
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        var begin = Offset(-1.0, 0.0);
+        var end = Offset.zero;
+        var curve = Curves.ease;
 
+        var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+        return SlideTransition(
+          position: animation.drive(tween),
+          child: child,
+        );
+      },
+    );
+  }
   @override
   void initState() {
     super.initState();
@@ -62,34 +77,18 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Route _routeToSignInScreen() {
-      return PageRouteBuilder(
-        pageBuilder: (context, animation, secondaryAnimation) => SignInScreen(),
-        transitionsBuilder: (context, animation, secondaryAnimation, child) {
-          var begin = Offset(-1.0, 0.0);
-          var end = Offset.zero;
-          var curve = Curves.ease;
-
-          var tween =
-          Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
-
-          return SlideTransition(
-            position: animation.drive(tween),
-            child: child,
-          );
-        },
-      );
-    }
     var scaffoldKey = GlobalKey<ScaffoldState>();
     maxHeight = MediaQuery.of(context).size.height;
     maxWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       key: scaffoldKey,
-      drawer: Drawer(
+      endDrawer: Drawer(
+        elevation: 20,
         child: Container(
           color: Theme.of(context).primaryColor,
-          child: ListView(
+          child: Column(
             children: [
+              SizedBox(height: 40),
               Consumer<ThemeNotifier>(
                   builder: (context, notifier, child) => IconButton(
                       icon: notifier.isDarkTheme
@@ -101,7 +100,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           : Icon(Icons.wb_sunny),
                       onPressed: () => {notifier.toggleTheme()})),
               Consumer<ThemeNotifier>(
-                builder: (context, notifier, child) => IconButton(
+                builder: (context2, notifier, child) => IconButton(
                     icon: notifier.isDarkTheme
                         ? Icon(
                       Icons.exit_to_app_rounded,
@@ -117,11 +116,11 @@ class _HomeScreenState extends State<HomeScreen> {
                       setState(() {
                         _isSigningOut = false;
                       });
-                      Navigator.of(context)
-                          .pushReplacement(_routeToSignInScreen());
+                      Navigator.of(context).pushReplacement(_routeToSignInScreen());
                     },
                 ),
               ),
+              Expanded(child: Container(),),
             ],
           ),
         ),
@@ -314,11 +313,11 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           Positioned(
-            left: 10,
-            top: 20,
+            right: 10,
+            top: 35,
             child: IconButton(
-              icon: Icon(Icons.menu,color: Colors.white,),
-              onPressed: () => scaffoldKey.currentState.openDrawer(),
+              icon: Icon(Icons.menu,color: Colors.white,size: 30,),
+              onPressed: () => scaffoldKey.currentState.openEndDrawer(),
             ),
           ),
         ],
