@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:madboxes/Screens/apps_chooser.dart';
 import 'package:madboxes/Screens/home_screen.dart';
 
 import 'authentication.dart';
@@ -50,7 +51,7 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
                   // CalwinDatabase.addUser(curuser, user.uid);
                   Navigator.of(context).pushReplacement(
                     MaterialPageRoute(
-                      builder: (context) => HomeScreen(),
+                      builder: (context) => appsChooser(),
                     ),
                   );
                 }

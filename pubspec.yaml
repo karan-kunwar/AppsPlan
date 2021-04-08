@@ -26,6 +26,7 @@ dependencies:
   flutter_riverpod:
   shared_preferences: ^2.0.5
   google_fonts:
+  device_apps: ^1.0.9
 
 
 dev_dependencies:
@@ -35,7 +36,6 @@ dev_dependencies:
 flutter:
 
   uses-material-design: true
-
   assets:
        - assets/google_logo.png
        - assets/bgtop.jpeg
