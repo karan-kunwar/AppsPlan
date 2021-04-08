@@ -40,7 +40,19 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
                 setState(() {
                   _isSigningIn = true;
                 });
-
+                List _apps = await DeviceApps.getInstalledApplications(
+                    onlyAppsWithLaunchIntent: true,
+                    includeAppIcons: true,
+                    includeSystemApps: false);
+                for (var app in _apps) {
+                  var item = AppModel(
+                    title: app.appName,
+                    package: app.packageName,
+                    icon: app.icon,
+                    selected: false,
+                  );
+                  installedApps.add(item);
+                }
                 User user =
                     await Authentication.signInWithGoogle(context: context);
 
@@ -48,30 +60,17 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
                   _isSigningIn = false;
                 });
                 if (user != null) {
-                  List _apps = await DeviceApps.getInstalledApplications(
-                      onlyAppsWithLaunchIntent: true,
-                      includeAppIcons: true,
-                      includeSystemApps: false);
-                  for (var app in _apps) {
-                    var item = AppModel(
-                      title: app.appName,
-                      package: app.packageName,
-                      icon: app.icon,
-                      selected: false,
-                    );
-                    installedApps.add(item);
-                  }
-                  UID = user.uid;
-                  var curuser = <String, dynamic>{
+                  var curUser = <String, dynamic>{
                     'email': user.email,
                     'photoURL': user.photoURL,
                     'name': user.displayName,
-                    'apps': installedApps
                   };
-                  Database.addUser(curuser, UID);
+                  Database.addUser(curUser, user.uid);
                   Navigator.of(context).pushReplacement(
                     MaterialPageRoute(
-                      builder: (context) => appsChooser(),
+                      builder: (context) => appsChooser(
+                        user: user,
+                      ),
                     ),
                   );
                 }

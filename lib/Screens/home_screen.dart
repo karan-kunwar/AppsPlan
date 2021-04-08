@@ -46,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
     }
 
     _currentForegroundApp = currentForegroundApp;
-    print(_currentForegroundApp);
+    //print(_currentForegroundApp);
   }
 
   @override
@@ -138,8 +138,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("Karan Kunwar",
+                      Text(widget.user.displayName,
                           style: TextStyle(
                               color: Colors.blue,
                               fontSize: 26,
@@ -149,7 +150,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       SizedBox(
                         height: 20,
                       ),
-                      Text("Stats",
+                      Text("Stats..",
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 37,
@@ -173,7 +174,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: <Widget>[
                     Container(
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(40),
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(20),
                       ),
                       height: 150,
                       child: _riveArtboard == null
@@ -190,31 +192,55 @@ class _HomeScreenState extends State<HomeScreen> {
                         Column(
                           children: [
                             Container(
-                              color: Colors.red,
-                              width: maxWidth / 2 - 20,
-                              height: 140,
+                              decoration: BoxDecoration(
+                                color: Colors.red,
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              width: maxWidth / 2 - 15,
+                              height: 150,
                             ),
                             SizedBox(
-                              height: 20,
-                              width: maxWidth / 2 - 40,
+                              height: 10,
+                              width: maxWidth / 2 - 30,
                             ),
                             Container(
-                              color: Colors.lightGreenAccent,
-                              width: maxWidth / 2 - 20,
-                              height: 140,
+                              decoration: BoxDecoration(
+                                color: Colors.lightGreenAccent,
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              width: maxWidth / 2 - 15,
+                              height: 150,
                             ),
                           ],
                         ),
                         Container(
-                          color: Colors.lightBlueAccent,
-                          width: maxWidth / 2 - 20,
-                          height: 300,
-                          child: ElevatedButton(
-                            onPressed: () {},
+                          decoration: BoxDecoration(
+                            color: Colors.blue,
+                            borderRadius: BorderRadius.circular(20),
                           ),
+                          width: maxWidth / 2 - 15,
+                          height: 310,
+                          // child: ElevatedButton(
+                          //   onPressed: () {
+                          //
+                          //   },
+                          // ),
                         ),
                       ],
-                    )
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                        color: Colors.lightBlueAccent,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      height: 150,
+                    ),
+                    SizedBox(
+                      height: 50,
+                    ),
                   ],
                 ),
               ),
