@@ -3,16 +3,9 @@ import 'dart:math';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'dart:typed_data';
-import 'package:device_apps/device_apps.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:googleapis/run/v1.dart';
-import 'package:madboxes/Auth/sign_in_button.dart';
 import 'package:madboxes/Models/AppModel.dart';
-
 import 'package:madboxes/Models/database.dart';
-import 'package:madboxes/Utils/theme.dart';
+
 import 'home_screen.dart';
 
 List installedApps = [];
@@ -39,7 +32,7 @@ class _appsChooserState extends State<appsChooser> {
       }
     }
     for (int i = 0; i < min(_distractedApps.length, 100); i++)
-      Database.addApp(_distractedApps[i], widget.user.uid);
+      MadDatabase.addApp(_distractedApps[i], widget.user.uid);
   }
 
   @override
