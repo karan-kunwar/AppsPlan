@@ -109,17 +109,19 @@ class _HomeScreenState extends State<HomeScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("Karan Kunwar",style: TextStyle(color: Colors.blue,fontSize: 26,fontWeight: FontWeight.bold)),
+                      Text(widget.user.displayName,style: TextStyle(color: Colors.blue,fontSize: 26,fontWeight: FontWeight.bold)),
                       Text("Software Developer",style: TextStyle(color: Colors.white,fontSize: 18)),
                       SizedBox(height: 20,),
-                      Text("Stats",style: TextStyle(color: Colors.white,fontSize: 37,fontWeight: FontWeight.w900)),
+                      Text("Stats..",style: TextStyle(color: Colors.white,fontSize: 37,fontWeight: FontWeight.w900)),
                     ],
                   ),
                   CircleAvatar(
                     radius: 60,
 
-                    backgroundImage: NetworkImage(widget.user.photoURL),),
+                    backgroundImage: NetworkImage(widget.user.photoURL),
+                  ),
                 ],
               ),
             ),
@@ -133,8 +135,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: <Widget>[
                     Container(
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(40),
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(20),
                       ),
+
                       height: 150,
                       child: _riveArtboard == null
                           ? const SizedBox()
@@ -150,25 +154,44 @@ class _HomeScreenState extends State<HomeScreen> {
                         Column(
                           children: [
                             Container(
-                              color: Colors.red,
-                              width: maxWidth/2-20,
-                              height: 140,
+                              decoration: BoxDecoration(
+                                color: Colors.red,
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              width: maxWidth/2-15,
+                              height: 150,
                             ),
-                            SizedBox(height: 20,width: maxWidth/2-40,),
+                            SizedBox(height: 10,width: maxWidth/2-40,),
                             Container(
-                              color: Colors.lightGreenAccent,
-                              width: maxWidth/2-20,
-                              height: 140,
+                              decoration: BoxDecoration(
+                                color: Colors.lightGreenAccent,
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              width: maxWidth/2-15,
+                              height: 150,
                             ),
                           ],
                         ),
                         Container(
-                          color: Colors.lightBlueAccent,
-                          width: maxWidth/2-20,
-                          height: 300,
+                          decoration: BoxDecoration(
+                            color: Colors.blue,
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          width: maxWidth/2-15,
+                          height: 310,
                         ),
+
                       ],
-                    )
+                    ),
+                    SizedBox(height: 10,),
+                    Container(
+                      decoration: BoxDecoration(
+                        color: Colors.lightBlueAccent,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      height: 150,
+                    ),
+                    SizedBox(height: 50,),
                   ],
                 ),
               ),

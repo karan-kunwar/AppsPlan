@@ -51,7 +51,7 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
                   // CalwinDatabase.addUser(curuser, user.uid);
                   Navigator.of(context).pushReplacement(
                     MaterialPageRoute(
-                      builder: (context) => appsChooser(),
+                      builder: (context) => appsChooser(user: user,),
                     ),
                   );
                 }
