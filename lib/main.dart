@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       child: Consumer<ThemeNotifier>(
           builder: (context, ThemeNotifier notifier, child) {
         return MaterialApp(
-          title: 'Calwin App',
+          title: 'madBoxes',
           debugShowCheckedModeBanner: false,
           theme: notifier.isDarkTheme ? dark : light,
           home: SignInScreen(),
