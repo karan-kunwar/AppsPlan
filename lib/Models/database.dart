@@ -31,11 +31,10 @@ class Database {
       ])
     });
   }
-
   static Future<List<dynamic>> getApps(String user_id) async {
     await _db.collection('users').doc(user_id).get().then((value) {
       {
-        return value.data()['installedApps'];
+        return value.data()['apps'];
       }
     });
   }

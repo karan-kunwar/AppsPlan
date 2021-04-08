@@ -12,6 +12,8 @@ import 'package:madboxes/Utils/theme.dart';
 import 'package:provider/src/consumer.dart';
 import 'package:rive/rive.dart';
 
+import 'apps_chooser.dart';
+
 class HomeScreen extends StatefulWidget {
   final User user;
   const HomeScreen({Key key, @required this.user}) : super(key: key);
@@ -62,8 +64,7 @@ class _HomeScreenState extends State<HomeScreen> {
         setState(() => _riveArtboard = artboard);
       },
     );
-    Timer.periodic(
-        Duration(seconds: 10), (Timer t) => _getCurrentForegroundApp());
+    // Timer.periodic(Duration(seconds: 10), (Timer t) => _getCurrentForegroundApp());
   }
 
   @override
@@ -195,15 +196,25 @@ class _HomeScreenState extends State<HomeScreen> {
                           Column(
                             children: [
                               Container(
-                                decoration: BoxDecoration(
-                                  color: Colors.red,
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                                child: Center(
+                                child: ElevatedButton(
+                                  style: ButtonStyle(
+                                    backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                                          (Set<MaterialState> states) {
+                                        if (states.contains(MaterialState.pressed))
+                                          return Colors.green;
+                                        return Colors.red; // Use the component's default.
+                                      },
+                                    ),
+                                  ),
+                                  onPressed: () {
+
+                                  },
                                   child: Column(
-                                    children: [
-                                      Text("Set",),
-                                      Text("Schedule",),
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children:[
+                                      Text("Set",style: GoogleFonts.montserrat(color: Colors.white, fontSize: 42,fontWeight: FontWeight.w700),),
+                                      Text("Schedule",style: GoogleFonts.montserrat(color: Colors.white60, fontSize: 30,fontWeight: FontWeight.w700)),
                                     ],
                                   ),
                                 ),
@@ -212,27 +223,50 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                               SizedBox(height: 10,width: maxWidth/2-30,),
                               Container(
-                                decoration: BoxDecoration(
-                                  color: Colors.lightGreenAccent,
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
                                 width: maxWidth/2-15,
                                 height: 150,
+                                child: ElevatedButton(
+                                  style: ButtonStyle(
+                                    backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                                          (Set<MaterialState> states) {
+                                        if (states.contains(MaterialState.pressed))
+                                          return Colors.pink;
+                                        return Colors.yellowAccent; // Use the component's default.
+                                      },
+                                    ),
+                                  ),
+                                  onPressed: () {
+
+                                  },
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children:[
+                                      Text("Modify",style: GoogleFonts.montserrat(color: Colors.red, fontSize: 36,fontWeight: FontWeight.w700),),
+                                      Text("Schedule",style: GoogleFonts.montserrat(color: Colors.black45, fontSize: 30,fontWeight: FontWeight.w700)),
+                                    ],
+                                  ),
+                                ),
                               ),
                             ],
                           ),
                           Container(
-                            decoration: BoxDecoration(
-                              color: Colors.blue,
-                              borderRadius: BorderRadius.circular(20),
-                            ),
                             width: maxWidth/2-15,
                             height: 310,
-                            // child: ElevatedButton(
-                            //   onPressed: () {
-                            //
-                            //   },
-                            // ),
+                            child: ElevatedButton(
+                              style: ButtonStyle(
+                                backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                                      (Set<MaterialState> states) {
+                                    if (states.contains(MaterialState.pressed))
+                                      return Colors.orangeAccent;
+                                    return Colors.blue; // Use the component's default.
+                                  },
+                                ),
+                              ),
+                              onPressed: () {
+
+                              },
+                            ),
                           ),
                         ],
                       ),
@@ -243,6 +277,25 @@ class _HomeScreenState extends State<HomeScreen> {
                           borderRadius: BorderRadius.circular(20),
                         ),
                         height: 150,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                builder: (context) => appsChooser(
+                                  user: widget.user,
+                                ),
+                              ),
+                            );
+                          },
+                          child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children:[
+                                Text("Edit",style: GoogleFonts.montserrat(color: Colors.white, fontSize: 42,fontWeight: FontWeight.w700),),
+                                Text("your Preferences",style: GoogleFonts.montserrat(color: Colors.white60, fontSize: 30,fontWeight: FontWeight.w700)),
+                              ],
+                          ),
+                        ),
                       ),
                       SizedBox(height: 50,),
                     ],
@@ -252,7 +305,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           ),
       ),
-          Positioned(
+      Positioned(
             left: 10,
             top: 20,
             child: IconButton(
@@ -260,7 +313,7 @@ class _HomeScreenState extends State<HomeScreen> {
               onPressed: () => scaffoldKey.currentState.openDrawer(),
             ),
           ),
-        ],
+      ],
       ),
     );
   }
