@@ -32,8 +32,8 @@ ThemeData dark = ThemeData(
       headline2: GoogleFonts.montserrat(
           color: Colors.white, fontSize: 22, fontWeight: FontWeight.bold),
       // List Font
-      bodyText1: GoogleFonts.montserrat(color: Colors.white, fontSize: 8),
-      bodyText2: GoogleFonts.montserrat(color: Colors.white, fontSize: 8),
+      bodyText1: GoogleFonts.montserrat(color: Colors.white, fontSize: 16),
+      bodyText2: GoogleFonts.montserrat(color: Colors.white, fontSize: 10),
     ));
 
 class ThemeNotifier extends ChangeNotifier {

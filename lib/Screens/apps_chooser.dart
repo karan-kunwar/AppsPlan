@@ -12,7 +12,6 @@ List installedApps = [];
 
 class appsChooser extends StatefulWidget {
   final User user;
-
   const appsChooser({Key key, this.user}) : super(key: key);
   @override
   _appsChooserState createState() => _appsChooserState();
@@ -22,6 +21,7 @@ class _appsChooserState extends State<appsChooser> {
   @override
   void initState() {
     super.initState();
+
   }
 
   Future<void> upload() async {
