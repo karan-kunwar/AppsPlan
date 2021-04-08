@@ -234,7 +234,6 @@ class _HomeScreenState extends State<HomeScreen> {
                             //   },
                             // ),
                           ),
-
                         ],
                       ),
                       SizedBox(height: 10,),
@@ -251,8 +250,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ],
-        ),
           ),
+      ),
           Positioned(
             left: 10,
             top: 20,
