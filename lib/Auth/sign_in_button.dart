@@ -1,6 +1,8 @@
+import 'package:device_apps/device_apps.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:madboxes/Models/AppModel.dart';
 import 'package:madboxes/Screens/apps_chooser.dart';
 import 'package:madboxes/Screens/home_screen.dart';
 
@@ -48,7 +50,19 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
                     'photoURL': user.photoURL,
                     'name': user.displayName,
                   };
-                  // CalwinDatabase.addUser(curuser, user.uid);
+                  List _apps = await DeviceApps.getInstalledApplications(
+                      onlyAppsWithLaunchIntent: true,
+                      includeAppIcons: true,
+                      includeSystemApps: false);
+                  for (var app in _apps) {
+                    var item = AppModel(
+                      title: app.appName,
+                      package: app.packageName,
+                      icon: app.icon,
+                      selected: false,
+                    );
+                    installedApps.add(item);
+                  }
                   Navigator.of(context).pushReplacement(
                     MaterialPageRoute(
                       builder: (context) => appsChooser(user: user,),

@@ -10,6 +10,8 @@ import 'package:madboxes/Models/AppModel.dart';
 import 'package:madboxes/Utils/theme.dart';
 import 'home_screen.dart';
 
+List installedApps = [];
+
 class appsChooser extends StatefulWidget {
   final User user;
 
@@ -19,29 +21,9 @@ class appsChooser extends StatefulWidget {
 }
 
 class _appsChooserState extends State<appsChooser> {
-  List installedApps = [];
   @override
   void initState() {
     super.initState();
-    _getApp();
-  }
-
-  void _getApp() async {
-    List _apps = await DeviceApps.getInstalledApplications(
-        onlyAppsWithLaunchIntent: true,
-        includeAppIcons: true,
-        includeSystemApps: false);
-    print(_apps);
-    for (var app in _apps) {
-      var item = AppModel(
-        title: app.appName,
-        package: app.packageName,
-        icon: app.icon,
-        selected: false,
-      );
-      //print(app);
-      installedApps.add(item);
-    }
   }
 
   @override
