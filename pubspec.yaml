@@ -27,6 +27,7 @@ dependencies:
   shared_preferences: ^2.0.5
   google_fonts:
   device_apps: ^1.0.9
+  vibration: ^1.7.3
 
 
 dev_dependencies:

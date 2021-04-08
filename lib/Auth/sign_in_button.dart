@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:madboxes/Models/AppModel.dart';
 import 'package:madboxes/Models/database.dart';
 import 'package:madboxes/Screens/apps_chooser.dart';
-import 'package:madboxes/Screens/home_screen.dart';
 
 import 'authentication.dart';
 
@@ -65,7 +64,7 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
                     'photoURL': user.photoURL,
                     'name': user.displayName,
                   };
-                  Database.addUser(curUser, user.uid);
+                  MadDatabase.addUser(curUser, user.uid);
                   Navigator.of(context).pushReplacement(
                     MaterialPageRoute(
                       builder: (context) => appsChooser(
