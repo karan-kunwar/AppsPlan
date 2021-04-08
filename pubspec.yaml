@@ -20,7 +20,7 @@ dependencies:
   uuid: 3.0.3
   animated_text_kit: ^4.0.0
   provider: ^5.0.0
-  rive: ^0.6.8
+  rive: ^0.7.1
   font_awesome_flutter: ^9.0.0
   flutter_form_builder:
   flutter_riverpod:
@@ -45,4 +45,6 @@ flutter:
        - assets/event_pages2.riv
        - assets/knight063.riv
        - assets/iron_giant2.riv
-     
+       - assets/buggy.riv
+       - assets/phone_drop.riv
+

@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:madboxes/Auth/sign_in_button.dart';
 import 'package:rive/rive.dart';
-
 import 'authentication.dart';
 
 class SignInScreen extends StatefulWidget {
@@ -19,13 +18,11 @@ class _SignInScreenState extends State<SignInScreen> {
   void initState() {
     super.initState();
     rootBundle.load('assets/knight063.riv').then(
-      (data) async {
-        final file = RiveFile();
-        if (file.import(data)) {
-          final artboard = file.mainArtboard;
-          artboard.addController(_controller = SimpleAnimation('idle'));
-          setState(() => _riveArtboard = artboard);
-        }
+          (data) async {
+        final file = RiveFile.import(data);
+        final artboard = file.mainArtboard;
+        artboard.addController(_controller = SimpleAnimation('idle'));
+        setState(() => _riveArtboard = artboard);
       },
     );
   }
