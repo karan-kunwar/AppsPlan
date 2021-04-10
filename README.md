@@ -1,6 +1,6 @@
-# madboxes
+# AppsPlan
 
-A 2 player game based on 3 colouring problem
+An app which moniter and helps you out in scheduling and limiting your app usage of app including social media, shopping etc. 
 
 ## Getting Started
 
